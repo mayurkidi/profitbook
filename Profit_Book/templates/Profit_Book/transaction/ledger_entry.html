@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'js./bootstrap.min.js' %}"></script>
+
+ <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+     </style>
+</head>
+<body>
+    <header class="p-1 bg-primary text-dark">
+        <h3>Ledger Entry</h3>
+    </header>
+    <form id="ledger_entry" class="form-control">
+        <label><b> From Date</b></label>
+        <input type="date">
+        <label style="margin-left:20px"><b> To Date </b></label>
+        <input type="date"><br>
+        <hr style="margin-top:-6px;">
+            <div class="container-fluid">
+                <a class=" btn-success   text-white " style="font-size:25px; padding:10px; " href="/add_ledger"><b>Add</b></a>
+                <a class=" btn-info   text-white " style="font-size:25px; padding:10px; margin-left:20px " href="/ledger_entry"><b>Show Entries</b></a>
+            </div>
+        <hr>
+    </form>
+        <table class="table table-dark" border="5px">
+        <tr>
+            <th>Id</th>
+            <th>Party Name</th>
+            <th>Gst No.</th>
+            <th></th>
+            <th></th>
+        </tr>
+            {% for getdata in Ledger_entry %}
+        <tr>
+            <td>{{getdata.id  }}</td>
+            <td>{{getdata.party_name  }}</td>
+            <td>{{getdata.gst_no  }}</td>
+            <td><a class="btn btn-primary" href="/editl/{{getdata.id}}">Edit</a> </td>
+            <td><a class="btn btn-danger" href="/deletel/{{getdata.id}}">Delete</a> </td>
+        </tr>
+            {% endfor %}
+    </table>
+
+
+</body>
+</html>

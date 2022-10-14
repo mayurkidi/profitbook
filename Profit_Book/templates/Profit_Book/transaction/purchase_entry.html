@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+ <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+     </style>
+</head>
+<body>
+    <header class="p-1 bg-primary text-dark">
+        <h3>Purchase Entry</h3>
+    </header>
+    <form id="purchase_entry" class="form-control">
+        <label><b> From Date</b></label>
+        <input type="date">
+        <label style="margin-left:20px"><b> To Date </b></label>
+        <input type="date"><br>
+        </form>
+        <hr style="margin-top:6px;">
+            <div class="container-fluid">
+                <a class=" btn-success   text-white " style="font-size:25px; padding:10px; " href="/add_purchase"><b>Add</b></a>
+                <a class=" btn-info   text-white " style="font-size:25px; padding:10px; margin-left:20px " href="/purchase_entry"><b>Show Entries</b></a>
+
+            </div>
+
+        <hr>
+
+    <table class="table table-dark" border="5px">
+        <tr>
+            <th>Voucher No</th>
+            <th>Voucher Date</th>
+            <th>Party Names</th>
+            <th>Amount</th>
+            <th></th>
+            <th></th>
+        </tr>
+            {% for getdata in Purchase_entry %}
+        <tr>
+            <td>{{getdata.voucher_no  }}</td>
+            <td>{{getdata.voucher_date  }}</td>
+            <td>{{getdata.party_name  }}</td>
+            <td>{{getdata.total_amount  }}</td>
+            <td><a class="btn btn-primary" href="/editp/{{getdata.id}}">Edit</a> </td>
+            <td><a class="btn btn-danger" href="/deletep/{{getdata.id}}">Delete</a> </td>
+        </tr>
+            {% endfor %}
+    </table>
+</body>
+</html>
